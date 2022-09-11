@@ -1,4 +1,8 @@
 const container = document.querySelector(".container");
+let pickedColor = document.querySelector("#color-picker")
+let pickColorVal = pickedColor.value;
+let eraser = document.querySelector("#eraser");
+let clear = document.querySelector("#clear");
 
 xCustom = (x) => {
     for(let i = 0; i < x*x; i++ ){
@@ -8,61 +12,52 @@ xCustom = (x) => {
         piece.style.cssText = `width: ${dimension}%` ; `height: ${dimension}%`;
         container.appendChild(piece);
     }
-    }
+}
 
-x16 = () => {
-    for (let i = 0; i < 256; i++){
-        let piece = document.createElement('div');
-        piece.classList.add("piece");
-        piece.style.cssText = "width: 5.6% ; height: 5.6%";
-        container.appendChild(piece);
-    }
-}
-x22 = () => {
-    for (let i = 0; i < 484; i++){
-        let piece = document.createElement('div');
-        piece.classList.add("piece");
-        piece.style.cssText = "width: 3.9% ; height: 3.9%";
-        container.appendChild(piece);
-    }
-}
-x26 = () => {
-    for (let i = 0; i < 676; i++){
-        let piece = document.createElement('div');
-        piece.classList.add("piece");
-        piece.style.cssText = "width: 3.2% ; height: 3.2%";
-        container.appendChild(piece);
-    }
-}
-x32 = () => {
-    for (let i = 0; i < 1024; i++){
-        let piece = document.createElement('div');
-        piece.classList.add("piece");
-        piece.style.cssText = "width: 3.125% ; height: 3.125%";
-        container.appendChild(piece);
-    }
-}
-x64 = () => {
-    for (let i = 0; i < 4096; i++){
-        let piece = document.createElement('div');
-        piece.classList.add("piece");
-        piece.style.cssText = "width: 1% ; height: 1%";
-        container.appendChild(piece);
-    }
-}
-let pickedColor = document.querySelector("#color-picker")
-let pickColorVal = pickedColor.value;
+xCustom(10)
+
+let pieces = document.querySelectorAll(".piece");
+
+eraser.addEventListener("click",() => {
+    pieces.forEach((piece) => {
+        piece.addEventListener("mouseover" , () => {
+            piece.style.background = "#ffffff"           
+        })
+    })
+})
 pickedColor.addEventListener("change", () => {
     pickColorVal = pickedColor.value;
+    pieces.forEach((piece) => {
+        piece.addEventListener("mouseover", () => {
+            piece.style.background = `${pickColorVal}`;
+        })
+    })
+})
+pickedColor.addEventListener("click", () => {
+    pickColorVal = pickedColor.value;
+    pieces.forEach((piece) => {
+        piece.addEventListener("mouseover", () => {
+            piece.style.background = `${pickColorVal}`;
+        })
+    })
 })
 
 
-xCustom(10)
-let pieces = document.querySelectorAll(".piece");
 pieces.forEach(Draw = (piece) => {
     piece.addEventListener('mouseover', () => {
         piece.style.background = `${pickColorVal}`;
     })
 })
+clear.addEventListener("click", () => {
+    pieces.forEach((piece) => {
+        piece.style.background = "#ffffff";
+    })
+})
+
+
+
+
+
+
 
                                                  
