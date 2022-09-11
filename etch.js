@@ -1,5 +1,15 @@
 const container = document.querySelector(".container");
 
+xCustom = (x) => {
+    for(let i = 0; i < x*x; i++ ){
+        let piece = document.createElement('div');
+        piece.classList.add("piece");
+        let dimension = (100 / (x*x)) * x;   
+        piece.style.cssText = `width: ${dimension}%` ; `height: ${dimension}%`;
+        container.appendChild(piece);
+    }
+    }
+
 x16 = () => {
     for (let i = 0; i < 256; i++){
         let piece = document.createElement('div');
@@ -28,7 +38,7 @@ x32 = () => {
     for (let i = 0; i < 1024; i++){
         let piece = document.createElement('div');
         piece.classList.add("piece");
-        piece.style.cssText = "width: 2.5% ; height: 2.5%";
+        piece.style.cssText = "width: 3.125% ; height: 3.125%";
         container.appendChild(piece);
     }
 }
@@ -42,7 +52,7 @@ x64 = () => {
 }
 
 
-x32()
+xCustom(10)
 let pieces = document.querySelectorAll(".piece");
 pieces.forEach((piece) => {
     piece.addEventListener('mouseover', () => {
