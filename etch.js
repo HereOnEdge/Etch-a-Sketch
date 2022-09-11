@@ -50,13 +50,18 @@ x64 = () => {
         container.appendChild(piece);
     }
 }
+let pickedColor = document.querySelector("#color-picker")
+let pickColorVal = pickedColor.value;
+pickedColor.addEventListener("change", () => {
+    pickColorVal = pickedColor.value;
+})
 
 
 xCustom(10)
 let pieces = document.querySelectorAll(".piece");
-pieces.forEach((piece) => {
+pieces.forEach(Draw = (piece) => {
     piece.addEventListener('mouseover', () => {
-        piece.style.background = "red";
+        piece.style.background = `${pickColorVal}`;
     })
 })
 
