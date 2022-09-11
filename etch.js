@@ -1,8 +1,12 @@
 let container = document.querySelector(".container");
 let pickedColor = document.querySelector("#color-picker");
 let pickColorVal = pickedColor.value;
+let backgroundColor = document.querySelector("#background-color");
+let pickBackColor = backgroundColor.value;
+container.style.background = `${pickBackColor}`;
 let eraser = document.querySelector("#eraser");
 let clear = document.querySelector("#clear");
+let draw = document.querySelector("#drawer");
 let customRange = document.querySelector("#custom-size");
 let rangeOutput = customRange.value
 let rangeContainer = document.createElement("span")
@@ -18,6 +22,7 @@ xCustom = (x) => {
         console.log("its working")
         container = document.createElement("div");
         container.classList.add("container");
+        container.style.background = `${pickBackColor}`;
         mainHTMl.insertBefore(container, document.querySelector(".options"))
     } else {
         console.log("not working")
@@ -33,10 +38,15 @@ xCustom = (x) => {
     eraser.addEventListener("click",() => {
         pieces.forEach((piece) => {
             piece.addEventListener("mouseover" , () => {
-                piece.style.background = "#ffffff"           
+                piece.style.background = `${pickBackColor}`;
             })
         })
     })
+    backgroundColor.addEventListener("change", () => {
+        pickBackColor = backgroundColor.value;
+        container.style.background = `${pickBackColor}`;
+    })
+
     pickedColor.addEventListener("change", () => {
         pickColorVal = pickedColor.value;
         pieces.forEach((piece) => {
@@ -54,17 +64,23 @@ xCustom = (x) => {
         })
     })
     
-    pieces.forEach(Draw = (piece) => {
+    pieces.forEach((piece) => {
         piece.addEventListener('mouseover', () => {
             piece.style.background = `${pickColorVal}`;
         })
     })
     clear.addEventListener("click", () => {
         pieces.forEach((piece) => {
-            piece.style.background = "#ffffff";
+            piece.style.background = `${pickBackColor}`;
         })
     })
-    
+    draw.addEventListener("click", () => {
+        pieces.forEach((piece) => {
+            piece.addEventListener('mouseover', () => {
+                piece.style.background = `${pickColorVal}`;
+            })
+        })
+    })
 
 
 }
